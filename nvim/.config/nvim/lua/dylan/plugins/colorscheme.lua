@@ -111,8 +111,16 @@ return {
 
 	{
 		"rebelot/kanagawa.nvim",
+		name = "kanagawa",
+		priority = 1000,
+	},
+
+	{
+		"bluz71/vim-moonfly-colors",
+		name = "moonfly",
+		priority = 1000,
 		config = function()
-			vim.cmd("colorscheme kanagawa")
+			vim.cmd("colorscheme moonfly")
 		end,
 	},
 }

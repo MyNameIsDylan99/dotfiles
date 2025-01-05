@@ -1,6 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	enabled = true,
+	build = "cargo +nightly build --release",
 	dependencies = {
 		"giuxtaposition/blink-cmp-copilot",
 		"L3MON4D3/LuaSnip",
