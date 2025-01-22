@@ -4,6 +4,7 @@ return {
 	build = "cargo +nightly build --release",
 	dependencies = {
 		"giuxtaposition/blink-cmp-copilot",
+		"Kaiser-Yang/blink-cmp-dictionary",
 		"L3MON4D3/LuaSnip",
 		config = function()
 			require("luasnip").setup({})
@@ -17,11 +18,11 @@ return {
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
 			default = {
 				"lsp",
+				"dictionary",
 				"path",
 				"snippets",
 				"buffer",
 				"copilot",
-				"luasnip" --[[, "dadbod" --]],
 			},
 			providers = {
 				lsp = {
@@ -31,16 +32,8 @@ return {
 					-- When linking markdown notes, I would get snippets and text in the
 					-- suggestions, I want those to show only if there are no LSP
 					-- suggestions
-					fallbacks = { "snippets", "luasnip", "buffer" },
+					--fallbacks = { "snippets", "luasnip", "buffer" },
 					score_offset = 90, -- the higher the number, the higher the priority
-				},
-				luasnip = {
-					name = "luasnip",
-					enabled = true,
-					module = "blink.cmp.sources.luasnip",
-					min_keyword_length = 2,
-					fallbacks = { "snippets" },
-					score_offset = 85, -- the higher the number, the higher the priority
 				},
 				path = {
 					name = "Path",
@@ -67,17 +60,11 @@ return {
 				snippets = {
 					name = "snippets",
 					enabled = true,
+					-- max_items = 8,
+					min_keyword_length = 2,
 					module = "blink.cmp.sources.snippets",
-					score_offset = 80, -- the higher the number, the higher the priority
+					score_offset = 85, -- the higher the number, the higher the priority
 				},
-				-- Example on how to configure dadbod found in the main repo
-				-- https://github.com/kristijanhusak/vim-dadbod-completion
-				--	dadbod = {
-				--		name = "Dadbod",
-				--		module = "vim_dadbod_completion.blink",
-				--		score_offset = 85, -- the higher the number, the higher the priority
-				--	},
-				-- Third class citizen mf always talking shit
 				copilot = {
 					name = "copilot",
 					enabled = true,
@@ -95,6 +82,29 @@ return {
 						return items
 					end,
 				},
+				dictionary = {
+					name = "Dictionary",
+					module = "blink-cmp-dictionary",
+					score_offset = 20,
+					enabled = true,
+					max_items = 8,
+					min_keyword_length = 3,
+					opts = {
+						dictionary_directories = { vim.fn.expand("~/Dokumente/Git/Stow/dotfiles/dictionaries") },
+						-- --  NOTE: To disable the definitions uncomment this section below
+						-- separate_output = function(output)
+						-- 	local items = {}
+						-- 	for line in output:gmatch("[^\r\n]+") do
+						-- 		table.insert(items, {
+						-- 			label = line,
+						-- 			insert_text = line,
+						-- 			documentation = nil,
+						-- 		})
+						-- 	end
+						-- 	return items
+						-- end,
+					},
+				},
 			},
 		})
 
@@ -102,6 +112,7 @@ return {
 		-- jump forward or backward in luasnip snippets
 		-- https://www.lazyvim.org/extras/coding/luasnip#blinkcmp-optional
 		opts.snippets = {
+			preset = "luasnip",
 			expand = function(snippet)
 				require("luasnip").lsp_expand(snippet)
 			end,
@@ -114,6 +125,28 @@ return {
 			jump = function(direction)
 				require("luasnip").jump(direction)
 			end,
+		}
+
+		opts.completion = {
+			--   keyword = {
+			--     -- 'prefix' will fuzzy match on the text before the cursor
+			--     -- 'full' will fuzzy match on the text before *and* after the cursor
+			--     -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
+			--     range = "full",
+			--   },
+			menu = {
+				border = "single",
+			},
+			documentation = {
+				auto_show = true,
+				window = {
+					border = "single",
+				},
+			},
+			-- Displays a preview of the selected item on the current line
+			ghost_text = {
+				enabled = true,
+			},
 		}
 
 		-- The default preset used by lazyvim accepts completions with enter

@@ -120,7 +120,7 @@ return {
 		name = "moonfly",
 		priority = 1000,
 		config = function()
-			--vim.cmd("colorscheme moonfly")
+			vim.cmd("colorscheme moonfly")
 		end,
 	},
 	{
@@ -130,7 +130,7 @@ return {
 		},
 		config = function(_, opts)
 			require("tokyodark").setup(opts) -- calling setup is optional
-			vim.cmd([[colorscheme tokyodark]])
+			--vim.cmd([[colorscheme tokyodark]])
 		end,
 	},
 }
