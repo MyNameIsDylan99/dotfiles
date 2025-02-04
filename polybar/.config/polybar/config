@@ -5,9 +5,8 @@ radius = 0
 fixed-center = false
 bottom = true
 
-background = #1d1f21
+background = #494a49
 foreground = #c5c8c6
-
 line-size = 3
 line-color =
 

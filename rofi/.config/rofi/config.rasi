@@ -184,3 +184,5 @@ configuration {
 	me-accept-custom: "Control+MouseDPrimary";
 */
 }
+//@theme "/usr/share/rofi/themes/dmenu.rasi"
+@theme "/home/dylan/.local/share/rofi/themes/rounded-yellow-dark.rasi"

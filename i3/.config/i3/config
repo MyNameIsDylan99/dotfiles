@@ -9,7 +9,7 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
-font xft:URWGothic-Book 11
+font xft:Lexend 11
 
 floating_modifier $mod
 
@@ -263,7 +263,8 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
 
 # Theme colors
 client.focused #c5c8c6 #1d1f21 #c5c8c6 #81a2be #81a2be
@@ -349,3 +350,12 @@ bindsym Print exec gnome-screenshot -i
 #crop-area screenshot by pressing Mod + printscreen
 bindsym $mod+Print exec gnome-screenshot -a
 
+# nerd-dictation
+
+# Starting it in German
+bindsym Ctrl+1 exec nerd-dictation begin  --vosk-model-dir=/home/dylan/.config/nerd-dictation/model_german
+# Ending it
+bindsym Ctrl+2 exec nerd-dictation end
+
+# Starting it in English
+bindsym Ctrl+3 exec nerd-dictation begin
