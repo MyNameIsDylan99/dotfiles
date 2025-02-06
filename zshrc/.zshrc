@@ -39,7 +39,7 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+#source <(fzf --zsh)
 
 
 # Setup vi editing
@@ -92,3 +92,4 @@ bindkey '^K' history-search-backward
 bindkey '^J' history-search-forward
 bindkey '^Y' autosuggest-accept
 
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
