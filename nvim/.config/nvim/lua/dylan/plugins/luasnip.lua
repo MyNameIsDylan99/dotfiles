@@ -20,21 +20,13 @@ return {
 		require("luasnip.loaders.from_vscode").load({ paths = { "/home/dylan/.config/nvim/lua/dylan/snippets" } })
 		ls.filetype_extend("cs", { "unity" })
 
-		ls.add_snippets("lua", {
-			s("test", {
-				t("local test = function("),
-				i(1),
-				t(")"),
-				i(2),
-				t("end"),
-			}),
-		})
-
+		-- Adds a summary snippet for C#
 		ls.add_snippets("cs", {
-			s("///", {
-				t("local test = function()"),
-				i(1),
-				t("end"),
+			s("summ", {
+				t({ "/// <summary>" }),
+				t({ "", "/// " }),
+				i(0, "Description..."),
+				t({ "", "/// </summary>" }),
 			}),
 		})
 	end,
