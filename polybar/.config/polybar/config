@@ -39,11 +39,13 @@ bottom = true
 
 line-size = 3pt
 
-border-size = 4pt
+border-size = 0pt
 border-color = #00000000
 
 padding-left = 0
 padding-right = 1
+padding-top = 0
+padding-bottom = 0
 
 module-margin = 1
 
@@ -64,7 +66,7 @@ enable-ipc = true
 ; wm-restack = bspwm
 ; wm-restack = i3
 
-; override-redirect = true
+;override-redirect = true
 
 ; This module is not active by default (to enable it, add it to one of the
 ; modules-* list above).
@@ -164,10 +166,12 @@ inherit = network-base
 interface-type = wireless
 label-connected = %{F#F0C674}%ifname%%{F-} %essid% %local_ip%
 
-[module/eth]
-inherit = network-base
-interface-type = wired
-label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
+# Ethernet
+
+#[module/eth]
+#inherit = network-base
+#interface-type = wired
+#label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
 
 [module/date]
 type = internal/date

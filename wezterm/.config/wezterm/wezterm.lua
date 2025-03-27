@@ -12,7 +12,7 @@ config.font_size = 19
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.93
+config.window_background_opacity = 0.5
 
 config.colors = require("cyberdream")
 
