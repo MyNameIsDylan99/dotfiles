@@ -87,8 +87,14 @@ setopt correct
 # spelling correction for all arguments
 setopt correctall
 
+
+# ZSH-Vi-mode
+source /home/linuxbrew/.linuxbrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+
 # Completion using arrow keys (based on history)
 bindkey '^K' history-search-backward
 bindkey '^J' history-search-forward
-bindkey '^Y' autosuggest-accept
+bindkey '^O' autosuggest-accept
 
+eval "$(pyenv virtualenv-init -)"
