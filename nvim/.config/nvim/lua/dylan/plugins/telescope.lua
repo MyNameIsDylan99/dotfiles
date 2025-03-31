@@ -93,6 +93,9 @@ return {
 						"--files",
 					},
 				},
+				colorscheme = {
+					enable_preview = true,
+				},
 			},
 			extensions = {
 				undo = vim.tbl_extend("error", fullscreen_setup, {

@@ -4,6 +4,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
 #source /share/powerlevel10k/powerlevel10k.zsh-theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -39,7 +42,7 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+#source <(fzf --zsh)
 
 
 # Setup vi editing
