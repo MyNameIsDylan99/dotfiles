@@ -311,7 +311,7 @@ bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 # MY STUFF
 
 # Resolution
-exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+exec --no-startup-id xrandr --output HDMI-1-0 --mode 1920x1080 --pos 0x0 --primary --rotate normal --right-of eDP-1 --output eDP-1 --mode 1920x1080 --pos 1920x0 --rotate normal
 
 # Set keyboard layout
 exec --no-startup-id setxkbmap -layout ch
