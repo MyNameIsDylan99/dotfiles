@@ -19,11 +19,8 @@ export PATH=$PATH:/home/dylan/Dokumente/GameDev/Git/Unity/nerd-dictation
 . "$HOME/.cargo/env"
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init - bash)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
 
 export PATH=$PATH:/usr/local/go/bin
-
-export OPENSSL_DIR=$OPENSSL_DIR:/home/linuxbrew/.linuxbrew/Cellar/openssl@3/3.4.1/include/
-. "$HOME/.cargo/env"
