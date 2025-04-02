@@ -13,9 +13,6 @@ return {
 	priority = 1,
 
 	opts = function(_, opts)
-		-- Merge custom sources with the existing ones from lazyvim
-		-- NOTE: by default lazyvim already includes the lazydev source, so not
-		-- adding it here again
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
 			default = {
 				"lsp",
@@ -30,11 +27,8 @@ return {
 					name = "lsp",
 					enabled = true,
 					module = "blink.cmp.sources.lsp",
-					-- When linking markdown notes, I would get snippets and text in the
-					-- suggestions, I want those to show only if there are no LSP
-					-- suggestions
-					--fallbacks = { "snippets", "luasnip", "buffer" },
-					score_offset = 90, -- the higher the number, the higher the priority
+					fallbacks = { "snippets", "luasnip", "buffer" },
+					score_offset = 100, -- the higher the number, the higher the priority
 				},
 				path = {
 					name = "Path",
@@ -62,17 +56,17 @@ return {
 				snippets = {
 					name = "snippets",
 					enabled = true,
-					-- max_items = 8,
+					max_items = 8,
 					min_keyword_length = 2,
 					module = "blink.cmp.sources.snippets",
-					score_offset = 85, -- the higher the number, the higher the priority
+					score_offset = 90, -- the higher the number, the higher the priority
 				},
 				copilot = {
 					name = "copilot",
 					enabled = true,
 					module = "blink-cmp-copilot",
 					min_keyword_length = 2,
-					score_offset = -100, -- the higher the number, the higher the priority
+					score_offset = 0, -- the higher the number, the higher the priority
 					async = true,
 					transform_items = function(_, items)
 						local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
@@ -87,7 +81,7 @@ return {
 				dictionary = {
 					name = "Dictionary",
 					module = "blink-cmp-dictionary",
-					score_offset = 20,
+					score_offset = -50,
 					enabled = true,
 					max_items = 8,
 					min_keyword_length = 3,
@@ -141,9 +135,7 @@ return {
 			},
 			documentation = {
 				auto_show = true,
-				window = {
-					border = "single",
-				},
+				auto_show_delay_ms = 200,
 			},
 			-- Displays a preview of the selected item on the current line
 			ghost_text = {
