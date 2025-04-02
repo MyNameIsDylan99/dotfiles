@@ -48,7 +48,8 @@ return {
 						trailing_slash = false,
 						label_trailing_slash = true,
 						get_cwd = function(context)
-							return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+							local bufnr = type(context.bufnr) == "function" and context.bufnr() or context.bufnr
+							return vim.fn.expand(("#%d:p:h"):format(bufnr))
 						end,
 						show_hidden_files_by_default = true,
 					},
