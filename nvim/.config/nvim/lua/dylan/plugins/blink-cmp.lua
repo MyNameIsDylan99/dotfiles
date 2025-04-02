@@ -27,13 +27,12 @@ return {
 					name = "lsp",
 					enabled = true,
 					module = "blink.cmp.sources.lsp",
-					fallbacks = { "snippets", "luasnip", "buffer" },
-					score_offset = 100, -- the higher the number, the higher the priority
+					-- score_offset = 100, -- the higher the number, the higher the priority
 				},
 				path = {
 					name = "Path",
 					module = "blink.cmp.sources.path",
-					score_offset = 3,
+					-- score_offset = 3,
 					-- When typing a path, I would get snippets and text in the
 					-- suggestions, I want those to show only if there are no path
 					-- suggestions
@@ -56,17 +55,17 @@ return {
 				snippets = {
 					name = "snippets",
 					enabled = true,
-					max_items = 8,
+					max_items = 2,
 					min_keyword_length = 2,
 					module = "blink.cmp.sources.snippets",
-					score_offset = 90, -- the higher the number, the higher the priority
+					-- score_offset = 95, -- the higher the number, the higher the priority
 				},
 				copilot = {
 					name = "copilot",
 					enabled = true,
 					module = "blink-cmp-copilot",
 					min_keyword_length = 2,
-					score_offset = 0, -- the higher the number, the higher the priority
+					-- score_offset = -1, -- the higher the number, the higher the priority
 					async = true,
 					transform_items = function(_, items)
 						local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
@@ -81,8 +80,11 @@ return {
 				dictionary = {
 					name = "Dictionary",
 					module = "blink-cmp-dictionary",
-					score_offset = -50,
-					enabled = true,
+					-- score_offset = -50,
+					enabled = function()
+						local ft = vim.bo.filetype
+						return ft == "markdown" or ft == "text"
+					end,
 					max_items = 8,
 					min_keyword_length = 3,
 					opts = {
