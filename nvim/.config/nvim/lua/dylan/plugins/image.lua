@@ -6,7 +6,7 @@ return {
 		require("image").setup({
 			backend = "kitty",
 			processor = "magick_rock", -- or "magick_cli"
->>>>>>> de5ef5a (Updated configs)
+			--processor = "magick_rock", -- or "magick_cli"
 			integrations = {
 				markdown = {
 					enabled = true,
