@@ -100,7 +100,7 @@ bindkey '^K' history-search-backward
 bindkey '^J' history-search-forward
 bindkey '^O' autosuggest-accept
 
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
