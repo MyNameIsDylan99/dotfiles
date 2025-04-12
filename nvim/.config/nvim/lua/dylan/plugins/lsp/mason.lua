@@ -29,7 +29,7 @@ return {
 			ensure_installed = {
 				"omnisharp",
 				"lua_ls",
-				"basedpyright",
+				--"basedpyright",
 			},
 		})
 

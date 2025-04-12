@@ -24,3 +24,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - bash)"
 
 export PATH=$PATH:/usr/local/go/bin
+
+export OPENSSL_DIR=$OPENSSL_DIR:/home/linuxbrew/.linuxbrew/Cellar/openssl@3/3.4.1/include/
