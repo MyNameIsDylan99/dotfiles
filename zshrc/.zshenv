@@ -16,3 +16,4 @@ export PYTHONHOME=/usr
 
 # Nerd dictation
 export PATH=$PATH:/home/dylan/Dokumente/GameDev/Git/Unity/nerd-dictation
+. "$HOME/.cargo/env"
