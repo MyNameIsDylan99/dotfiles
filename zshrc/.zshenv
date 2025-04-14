@@ -23,3 +23,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - bash)"
 
 export PATH=$PATH:/usr/local/go/bin
+. "$HOME/.cargo/env"
