@@ -1,4 +1,5 @@
 set $mod Mod4
+workspace_layout tabbed
 
 new_window pixel 1
 new_float normal
@@ -20,7 +21,8 @@ bindsym $mod+Return exec --no-startup-id ghostty
 bindsym $mod+x kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-1/launcher.sh
+# bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-1/launcher.sh
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+h focus left
