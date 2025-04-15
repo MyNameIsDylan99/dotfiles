@@ -20,7 +20,6 @@ return {
 		end, { desc = "Peek Fold" })
 
 		require("ufo").setup({
-
 			provider_selector = function(_, ft, _)
 				local lspWithOutFolding = { "markdown", "zsh", "css", "html", "python", "json" }
 				if vim.tbl_contains(lspWithOutFolding, ft) then
