@@ -20,9 +20,15 @@ return {
 	opts = {
 		workspaces = {
 			{
+				name = "Linux Wiki",
+				path = "~/Dokumente/Programme/Obsidian/Linux Wiki",
+			},
+
+			{
 				name = "Life",
 				path = "~/Dokumente/Programme/Obsidian/Life",
 			},
+
 			{
 				name = "MajorProject",
 				path = "~/Dokumente/Programme/Obsidian/MajorProject",
