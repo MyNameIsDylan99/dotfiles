@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	enabled = true,
-	build = "cargo +nightly build --release",
+	build = "cargo build --release",
 	dependencies = {
 		"giuxtaposition/blink-cmp-copilot",
 		"Kaiser-Yang/blink-cmp-dictionary",

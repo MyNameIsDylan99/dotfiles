@@ -19,20 +19,20 @@ return {
 	},
 	opts = {
 		workspaces = {
-			{
-				name = "Linux Wiki",
-				path = "~/Dokumente/Programme/Obsidian/Linux Wiki",
-			},
+			--			{
+			--				name = "Linux Wiki",
+			--				path = "~/notes/Linux Wiki",
+			--			},
 
 			{
 				name = "Life",
-				path = "~/Dokumente/Programme/Obsidian/Life",
+				path = "~/notes/Life",
 			},
 
-			{
-				name = "MajorProject",
-				path = "~/Dokumente/Programme/Obsidian/MajorProject",
-			},
+			-- {
+			-- 	name = "MajorProject",
+			-- 	path = "~/notes/MajorProject",
+			-- },
 		},
 
 		-- Optional, if you keep notes in a specific subdirectory of your vault.
@@ -334,4 +334,23 @@ return {
 			end,
 		},
 	},
+	config = function(_, opts)
+		require("obsidian").setup(opts)
+		vim.keymap.set("n", "<leader>otg", "<cmd>ObsidianTag<CR>", { desc = "Obsidian: Find tags" })
+		vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Obsidian: Create Link" })
+		vim.keymap.set("n", "<leader>op", "<cmd>ObsidianPasteImg<CR>", { desc = "Obsidian: Paste Image" })
+		vim.keymap.set("n", "<leader>of", "<cmd>ObsidianFollowLink<CR>", { desc = "Obsidian: Follow link" })
+		vim.keymap.set("n", "<leader>od", "<cmd>ObsidianDailies<CR>", { desc = "Obsidian: Dailies" })
+		vim.keymap.set("n", "<leader>otd", "<cmd>ObsidianToday<CR>", { desc = "Obsidian: Today" })
+		vim.keymap.set("n", "<leader>otm", "<cmd>ObsidianTomorrow<CR>", { desc = "Obsidian: Tomorrow" })
+		vim.keymap.set("n", "<leader>otoc", "<cmd>ObsidianTOC<CR>", { desc = "Obsidian: TOC" })
+		vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Obsidian: New note" })
+		vim.keymap.set(
+			"n",
+			"<leader>ont",
+			"<cmd>ObsidianNewFromTemplate<CR>",
+			{ desc = "Obsidian: New note from template" }
+		)
+		vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Obsidian: Rename" })
+	end,
 }
