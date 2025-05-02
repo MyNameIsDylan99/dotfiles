@@ -70,7 +70,7 @@ alias -g fs='rg --no-heading --line-number --color=always "" . | fzf --ansi --de
 
 
 # Change to obsidian directory and open neovim
-alias obsi='cd ~/Dokumente/Programme/Obsidian; nvim'
+alias obsi='cd ~/notes/; nvim'
 # search obsidian folder for file match
 alias of='nvim "$(fzf --walker-root=/home/dylan/Dokumente/Programme/Obsidian)"'
 # search obsidian folder for string match
