@@ -25,19 +25,10 @@ return {
 			--			},
 
 			{
-				name = "Linux Wiki",
-				path = "~/Dokumente/Programme/Obsidian/Linux Wiki",
-			},
-
-			{
 				name = "Life",
-				path = "~/Dokumente/Programme/Obsidian/Life",
+				path = "~/notes/Life",
 			},
 
-			{
-				name = "MajorProject",
-				path = "~/Dokumente/Programme/Obsidian/MajorProject",
-			},
 			-- {
 			-- 	name = "MajorProject",
 			-- 	path = "~/notes/MajorProject",
