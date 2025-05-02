@@ -28,7 +28,6 @@ return {
 				name = "Life",
 				path = "~/notes/Life",
 			},
-
 			-- {
 			-- 	name = "MajorProject",
 			-- 	path = "~/notes/MajorProject",
