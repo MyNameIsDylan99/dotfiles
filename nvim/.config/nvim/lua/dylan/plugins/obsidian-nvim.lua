@@ -23,10 +23,10 @@ return {
 				name = "Life",
 				path = "~/notes/Life",
 			},
-			{
-				name = "MajorProject",
-				path = "~/notes/MajorProject",
-			},
+			-- {
+			-- 	name = "MajorProject",
+			-- 	path = "~/notes/MajorProject",
+			-- },
 		},
 
 		-- Optional, if you keep notes in a specific subdirectory of your vault.
