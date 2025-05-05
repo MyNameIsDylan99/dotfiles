@@ -26,3 +26,8 @@ export PATH=$PATH:/usr/local/go/bin
 
 export OPENSSL_DIR=$OPENSSL_DIR:/home/linuxbrew/.linuxbrew/Cellar/openssl@3/3.4.1/include/
 . "$HOME/.cargo/env"
+
+export GDK_SCALE=3
+export GDK_DPI_SCALE=0.5
+
+export PATH="$HOME/.emacs.d/bin/:$PATH"
