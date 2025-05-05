@@ -82,9 +82,9 @@
 ;; they are implemented.
 
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 36))
-(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 38))
-(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 48)) ;; z.B. für Präsentationsmodus
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 28))
+(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 28)) ;; z.B. für Präsentationsmodus
 
 (after! doom-modeline
   (setq doom-modeline-height 45)) ;; Default ist 25
