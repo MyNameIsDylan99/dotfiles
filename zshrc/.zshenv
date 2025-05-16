@@ -16,11 +16,5 @@ export PYTHONHOME=/usr
 
 # Nerd dictation
 export PATH=$PATH:/home/dylan/Dokumente/GameDev/Git/Unity/nerd-dictation
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
-
-export PATH=$PATH:/usr/local/go/bin
+>>>>>>> d9f5e7c (DPI settings changed for surface book)
 . "$HOME/.cargo/env"
