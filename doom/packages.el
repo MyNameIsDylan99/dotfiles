@@ -49,3 +49,5 @@
 ;; (unpin! t)
 
 (package! key-chord)
+(package! org-roam)
+(package! mu4e)
