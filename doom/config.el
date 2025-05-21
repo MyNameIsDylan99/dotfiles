@@ -11,6 +11,7 @@
 (setq org-agenda-files
       '("~/notes/"
         "~/notes/Life/GTD/Projects/"
+        "~/pCloudDrive/Portfolio/"
         "~/notes/daily/"))
 (setq org-log-done 'time))
 
@@ -62,28 +63,57 @@
       :desc "Tomorrow" "m" #'org-roam-dailies-capture-tomorrow
       :desc "Find daily" "d" #'org-roam-dailies-goto-date)
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(require 'smtpmail)
-(setq user-mail-address "dylan.frosini@outlook.com"
-      user-full-name "Dylan Frosini"
-      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbysyncrc -a"
-      mu4e-update-interval 300
-      message-signature
-      (concat
-       "Dylan Frosini\n")
-      message-send-mail-function 'smtpmail-send-it
-      starttls-use-gnuls t
-      smtpmail-starttls-credentials '(("smtp.land1.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.land1.com" 587 "dylan.frosini@outlook.com" nil))
-      smtpmail-default-smtp-server "smtp.land1.com"
-      smtpmail-smtp-service 587
-      mu4e-sent-folder "/Sent"
-      mu4e-drafts-folder "/Drafts"
-      mu4e-trash-folder "/Trash"
-      mu4e-refile-folder "/All Mail"
-      mu4e-maildir-shortcuts
-      '(("/Outlook/Inbox"     . ?i)
-        ("/Outlook/Sent"      . ?s)
-        ("/Outlook/All Mail"  . ?a)
-        ("/Outlook/Trash"     . ?t)))
+;;Smooth scrolling
+(pixel-scroll-precision-mode 1)
+(defun my-smooth-scroll (lines)
+  "Smoothly scroll by LINES (positive or negative), keeping the cursor in view."
+  (let ((step (if (< lines 0) -1 1))
+        (remaining (abs lines)))
+    (dotimes (_ remaining)
+      (scroll-up-line step)
+      (ignore-errors
+        (forward-line step)) ;; bewegt den Cursor mit
+      (sit-for 0.01))))
+
+(map! :n "C-d"
+      (lambda () (interactive)
+        (my-smooth-scroll (/ (window-body-height) 2)))
+      :n "C-u"
+      (lambda () (interactive)
+        (my-smooth-scroll (- (/ (window-body-height) 2)))))
+
+(use-package! beacon
+  :config
+  (beacon-mode 1))
+
+;; Beispiel für Org Mode Heading Fonts
+(set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
+(set-face-attribute 'org-level-2 nil :height 1.3 :weight 'bold)
+(set-face-attribute 'org-level-3 nil :height 1.2 :weight 'bold)
+(set-face-attribute 'org-level-4 nil :height 1.1 :weight 'bold)
+
+;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+;;(require 'mu4e)
+;;(require 'smtpmail)
+;;(setq user-mail-address "fresshnes@gmail.com"
+;;      user-full-name "Dylan Frosini"
+;;      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbysyncrc -a"
+;;      mu4e-update-interval 300
+;;      message-signature
+;;      (concat
+;;       "Dylan Frosini\n")
+;;      message-send-mail-function 'smtpmail-send-it
+;;      starttls-use-gnuls t
+;;      smtpmail-starttls-credentials '(("smtp.land1.com" 587 nil nil))
+;;      smtpmail-auth-credentials '(("smtp.land1.com" 587 "fresshnes@gmail.com" nil))
+;;      smtpmail-default-smtp-server "smtp.land1.com"
+;;      smtpmail-smtp-service 587
+;;      mu4e-sent-folder "/Sent"
+;;      mu4e-drafts-folder "/Drafts"
+;;      mu4e-trash-folder "/Trash"
+;;      mu4e-refile-folder "/All Mail"
+;;      mu4e-maildir-shortcuts
+;;      '(("/gmail/INBOX"     . ?i)
+;;        ("/gmail/Sent"      . ?s)
+;;        ("/gmail/All Mail"  . ?a)
+;;        ("/gmail/Trash"     . ?t)))
