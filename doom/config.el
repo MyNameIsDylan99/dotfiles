@@ -1,19 +1,18 @@
+;; -*- lexical-binding: t; -*-
+
 (setq doom-theme 'doom-one)
 
 (setq display-line-numbers-type t)
 (setq-default truncate-lines t) ; in allen Modi keine Zeilen umbrechen
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-
 (after! org
-(setq org-directory "~/notes/")
-(setq org-agenda-files
-      '("~/notes/"
-        "~/notes/Life/GTD/Projects/"
-        "~/pCloudDrive/Portfolio/"
-        "~/notes/daily/"))
-(setq org-log-done 'time))
+  (setq org-directory "~/notes/")
+  (setq org-agenda-files
+        '("~/notes/"
+          "~/notes/Life/GTD/Projects/"
+          "~/pCloudDrive/Portfolio/"
+          "~/notes/daily/"))
+  (setq org-log-done 'time))
 
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 36))
@@ -31,9 +30,9 @@
 
 (after! lsp-mode
   (setq
-        lsp-enable-snippet nil     ;; optional
-        lsp-enable-symbol-highlighting t
-        lsp-signature-auto-activate t))
+   lsp-enable-snippet nil     ;; optional
+   lsp-enable-symbol-highlighting t
+   lsp-signature-auto-activate t))
 
 (add-hook 'csharp-mode-hook #'lsp!)
 
@@ -92,28 +91,48 @@
 (set-face-attribute 'org-level-3 nil :height 1.2 :weight 'bold)
 (set-face-attribute 'org-level-4 nil :height 1.1 :weight 'bold)
 
-;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-;;(require 'mu4e)
-;;(require 'smtpmail)
-;;(setq user-mail-address "fresshnes@gmail.com"
-;;      user-full-name "Dylan Frosini"
-;;      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbysyncrc -a"
-;;      mu4e-update-interval 300
-;;      message-signature
-;;      (concat
-;;       "Dylan Frosini\n")
-;;      message-send-mail-function 'smtpmail-send-it
-;;      starttls-use-gnuls t
-;;      smtpmail-starttls-credentials '(("smtp.land1.com" 587 nil nil))
-;;      smtpmail-auth-credentials '(("smtp.land1.com" 587 "fresshnes@gmail.com" nil))
-;;      smtpmail-default-smtp-server "smtp.land1.com"
-;;      smtpmail-smtp-service 587
-;;      mu4e-sent-folder "/Sent"
-;;      mu4e-drafts-folder "/Drafts"
-;;      mu4e-trash-folder "/Trash"
-;;      mu4e-refile-folder "/All Mail"
-;;      mu4e-maildir-shortcuts
-;;      '(("/gmail/INBOX"     . ?i)
-;;        ("/gmail/Sent"      . ?s)
-;;        ("/gmail/All Mail"  . ?a)
-;;        ("/gmail/Trash"     . ?t)))
+(use-package! treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
+(use-package! astro-ts-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.astro\\'" . astro-ts-mode))
+  (when (modulep! +lsp)
+    (add-hook 'astro-ts-mode-hook (lambda () (lsp!)) 'append))
+  ;;(add-hook 'astro-ts-mode-hook #'lsp 'append)
+  ;;(add-hook 'astro-ts-mode-hook #'lsp! 'append))
+
+  :config
+  (let ((astro-recipe (make-treesit-auto-recipe
+                       :lang 'astro
+                       :ts-mode 'astro-ts-mode
+                       :url "https://github.com/virchau13/tree-sitter-astro"
+                       :revision "master"
+                       :source-dir "src")))
+
+    (add-to-list 'treesit-auto-recipe-list astro-recipe)))
+(set-formatter! 'prettier-astro
+  '("npx" "prettier" "--parser=astro"
+    "--config" "/home/dylan/.config/prettier/.prettierrc.mjs"
+    (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
+  :modes '(astro-ts-mode))
+
+(setf (alist-get 'astro-mode apheleia-mode-alist)
+      'prettier-astro)
+
+(use-package! lsp-tailwindcss
+  :when (modulep! +lsp)
+  :init
+  (setq! lsp-tailwindcss-add-on-mode t)
+  :config
+  (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
+
+;; MDX Support
+(add-to-list 'auto-mode-alist '("\\.\\(mdx\\)$" . markdown-mode))
+(when (modulep! +lsp)
+  (add-hook 'markdown-mode-local-vars-hook #'lsp! 'append))
+
