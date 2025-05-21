@@ -47,41 +47,9 @@
 (setq org-agenda-files
       '("~/notes/"
         "~/notes/Life/GTD/Projects/"
+        "~/pCloudDrive/Portfolio/"
         "~/notes/daily/"))
 (setq org-log-done 'time))
-
-
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
 
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
@@ -131,28 +99,57 @@
       :desc "Tomorrow" "m" #'org-roam-dailies-capture-tomorrow
       :desc "Find daily" "d" #'org-roam-dailies-goto-date)
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(require 'smtpmail)
-(setq user-mail-address "dylan.frosini@outlook.com"
-      user-full-name "Dylan Frosini"
-      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbysyncrc -a"
-      mu4e-update-interval 300
-      message-signature
-      (concat
-       "Dylan Frosini\n")
-      message-send-mail-function 'smtpmail-send-it
-      starttls-use-gnuls t
-      smtpmail-starttls-credentials '(("smtp.land1.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.land1.com" 587 "dylan.frosini@outlook.com" nil))
-      smtpmail-default-smtp-server "smtp.land1.com"
-      smtpmail-smtp-service 587
-      mu4e-sent-folder "/Sent"
-      mu4e-drafts-folder "/Drafts"
-      mu4e-trash-folder "/Trash"
-      mu4e-refile-folder "/All Mail"
-      mu4e-maildir-shortcuts
-      '(("/Outlook/Inbox"     . ?i)
-        ("/Outlook/Sent"      . ?s)
-        ("/Outlook/All Mail"  . ?a)
-        ("/Outlook/Trash"     . ?t)))
+;;Smooth scrolling
+(pixel-scroll-precision-mode 1)
+(defun my-smooth-scroll (lines)
+  "Smoothly scroll by LINES (positive or negative), keeping the cursor in view."
+  (let ((step (if (< lines 0) -1 1))
+        (remaining (abs lines)))
+    (dotimes (_ remaining)
+      (scroll-up-line step)
+      (ignore-errors
+        (forward-line step)) ;; bewegt den Cursor mit
+      (sit-for 0.01))))
+
+(map! :n "C-d"
+      (lambda () (interactive)
+        (my-smooth-scroll (/ (window-body-height) 2)))
+      :n "C-u"
+      (lambda () (interactive)
+        (my-smooth-scroll (- (/ (window-body-height) 2)))))
+
+(use-package! beacon
+  :config
+  (beacon-mode 1))
+
+;; Beispiel für Org Mode Heading Fonts
+(set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
+(set-face-attribute 'org-level-2 nil :height 1.3 :weight 'bold)
+(set-face-attribute 'org-level-3 nil :height 1.2 :weight 'bold)
+(set-face-attribute 'org-level-4 nil :height 1.1 :weight 'bold)
+
+;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+;;(require 'mu4e)
+;;(require 'smtpmail)
+;;(setq user-mail-address "fresshnes@gmail.com"
+;;      user-full-name "Dylan Frosini"
+;;      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbysyncrc -a"
+;;      mu4e-update-interval 300
+;;      message-signature
+;;      (concat
+;;       "Dylan Frosini\n")
+;;      message-send-mail-function 'smtpmail-send-it
+;;      starttls-use-gnuls t
+;;      smtpmail-starttls-credentials '(("smtp.land1.com" 587 nil nil))
+;;      smtpmail-auth-credentials '(("smtp.land1.com" 587 "fresshnes@gmail.com" nil))
+;;      smtpmail-default-smtp-server "smtp.land1.com"
+;;      smtpmail-smtp-service 587
+;;      mu4e-sent-folder "/Sent"
+;;      mu4e-drafts-folder "/Drafts"
+;;      mu4e-trash-folder "/Trash"
+;;      mu4e-refile-folder "/All Mail"
+;;      mu4e-maildir-shortcuts
+;;      '(("/gmail/INBOX"     . ?i)
+;;        ("/gmail/Sent"      . ?s)
+;;        ("/gmail/All Mail"  . ?a)
+;;        ("/gmail/Trash"     . ?t)))
