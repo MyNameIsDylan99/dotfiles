@@ -13,10 +13,11 @@
           "~/notes/daily/"))
   (setq org-log-done 'time))
 
+
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+(setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 22))
 (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 28))
-(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 28)) ;; z.B. für Präsentationsmodus
+(setq doom-big-font (font-spec :family "FantasqueSansM Nerd Font" :size 28)) ;; z.B. für Präsentationsmodus
 
 (after! doom-modeline
   (setq doom-modeline-height 45)) ;; Default ist 25
@@ -163,3 +164,7 @@
      'face 'doom-dashboard-banner)))
 
 (setq +doom-dashboard-ascii-banner-fn #'my-doom-dashboard-cat-banner)
+
+;;(add-hook 'vterm-mode-hook
+;;          (lambda ()
+;;            (evil-emacs-state)))  ;; oder: (evil-insert-state) wenn du direkt tippen willst
