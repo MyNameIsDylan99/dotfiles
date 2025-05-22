@@ -138,7 +138,9 @@
   (add-hook 'markdown-mode-local-vars-hook #'lsp! 'append))
 
 ;; Doom Dashboard
-(setq fancy-splash-image "/home/dylan/Pictures/EmacsImages/doom-emacs-cats-small.png")
+(setq fancy-splash-image
+      (expand-file-name "splashscreens/doom-emacs-cats-small.png" doom-user-dir))
+
 (defun my-doom-dashboard-cat-banner ()
   (let* ((banner '("                      /^--^\\     /^--^\\     /^--^\\"
                    "                      \\____/     \\____/     \\____/"
