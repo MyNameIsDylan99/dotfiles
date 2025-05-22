@@ -114,14 +114,16 @@
                        :source-dir "src")))
 
     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
-(set-formatter! 'prettier-astro
-  '("npx" "prettier" "--parser=astro"
-    "--config" "/home/dylan/.config/prettier/.prettierrc.mjs"
-    (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
-  :modes '(astro-ts-mode))
 
-(setf (alist-get 'astro-mode apheleia-mode-alist)
-      'prettier-astro)
+(after! apheleia
+  (set-formatter! 'prettier-astro
+    '("npx" "prettier" "--parser=astro"
+      "--config" "/home/dylan/.config/prettier/.prettierrc.mjs"
+      (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
+    :modes '(astro-ts-mode))
+
+  (setf (alist-get 'astro-mode apheleia-mode-alist)
+        'prettier-astro))
 
 (use-package! lsp-tailwindcss
   :when (modulep! +lsp)
@@ -135,3 +137,27 @@
 (when (modulep! +lsp)
   (add-hook 'markdown-mode-local-vars-hook #'lsp! 'append))
 
+;; Doom Dashboard
+(setq fancy-splash-image "/home/dylan/Pictures/EmacsImages/doom-emacs-white.svg")
+(defun my-doom-dashboard-cat-banner ()
+  (let* ((banner '("                      /^--^\\     /^--^\\     /^--^\\"
+                   "                      \\____/     \\____/     \\____/"
+                   "                     /      \\   /      \\   /      \\"
+                   "KAT                 |        | |        | |        |"
+                   "                     \\__  __/   \\__  __/   \\__  __/"
+                   "|^|^|^|^|^|^|^|^|^|^|^|^\\ \\^|^|^|^/ /^|^|^|^|^\\ \\^|^|^|^|^|^|^|^|^|^|^|^|"
+                   "| | | | | | | | | | | | |\\ \\| | |/ /| | | | | | \\ \\ | | | | | | | | | | |"
+                   "########################/ /######\\ \\###########/ /#######################"
+                   "| | | | | | | | | | | | \\/| | | | \\/| | | | | |\\/ | | | | | | | | | | | |"
+                   "|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|"))
+         (longest-line (apply #'max (mapcar #'length banner))))
+    (put-text-property
+     (point)
+     (dolist (line banner (point))
+       (insert (+doom-dashboard--center
+                +doom-dashboard--width
+                (concat line (make-string (max 0 (- longest-line (length line))) 32)))
+               "\n"))
+     'face 'doom-dashboard-banner)))
+
+(setq +doom-dashboard-ascii-banner-fn #'my-doom-dashboard-cat-banner)
