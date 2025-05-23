@@ -14,7 +14,6 @@
           "~/notes/daily/"))
   (setq org-log-done 'time))
 
-
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 36))
 (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 38))
