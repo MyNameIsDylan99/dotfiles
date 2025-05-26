@@ -62,7 +62,6 @@
       :desc "Tomorrow" "m" #'org-roam-dailies-capture-tomorrow
       :desc "Find daily" "d" #'org-roam-dailies-goto-date)
 
-
 ;;Smooth scrolling
 ;;(pixel-scroll-precision-mode 1)
 ;; (defun my-smooth-scroll (lines)
