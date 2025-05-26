@@ -89,8 +89,8 @@
   (defun my/beacon-blink-after-scroll (&rest _)
     (beacon-blink))
 
-  (advice-add 'scroll-up-command :after #'my/beacon-blink-after-scroll)
-  (advice-add 'scroll-down-command :after #'my/beacon-blink-after-scroll))
+  (advice-add 'evil-scroll-up-command :after #'my/beacon-blink-after-scroll)
+  (advice-add 'evil-scroll-down-command :after #'my/beacon-blink-after-scroll))
 
 ;; Beispiel für Org Mode Heading Fonts
 (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
