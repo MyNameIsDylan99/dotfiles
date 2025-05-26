@@ -63,7 +63,6 @@
       :desc "Find daily" "d" #'org-roam-dailies-goto-date)
 
 ;;Smooth scrolling
-;;(pixel-scroll-precision-mode 1)
 ;; (defun my-smooth-scroll (lines)
 ;;   "Smoothly scroll by LINES (positive or negative), keeping the cursor in view."
 ;;   (let ((step (if (< lines 0) -1 1))
@@ -81,6 +80,7 @@
 ;;       (lambda () (interactive)
 ;;         (my-smooth-scroll (- (/ (window-body-height) 2)))))
 
+(pixel-scroll-precision-mode 1)
 (use-package! beacon
   :config
   (beacon-mode 1))
