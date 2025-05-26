@@ -64,22 +64,22 @@
 
 ;;Smooth scrolling
 (pixel-scroll-precision-mode 1)
-(defun my-smooth-scroll (lines)
-  "Smoothly scroll by LINES (positive or negative), keeping the cursor in view."
-  (let ((step (if (< lines 0) -1 1))
-        (remaining (abs lines)))
-    (dotimes (_ remaining)
-      (scroll-up-line step)
-      (ignore-errors
-        (forward-line step)) ;; bewegt den Cursor mit
-      (sit-for 0.01))))
+;; (defun my-smooth-scroll (lines)
+;;   "Smoothly scroll by LINES (positive or negative), keeping the cursor in view."
+;;   (let ((step (if (< lines 0) -1 1))
+;;         (remaining (abs lines)))
+;;     (dotimes (_ remaining)
+;;       (scroll-up-line step)
+;;       (ignore-errors
+;;         (forward-line step)) ;; bewegt den Cursor mit
+;;       (sit-for 0.01))))
 
-(map! :n "C-d"
-      (lambda () (interactive)
-        (my-smooth-scroll (/ (window-body-height) 2)))
-      :n "C-u"
-      (lambda () (interactive)
-        (my-smooth-scroll (- (/ (window-body-height) 2)))))
+;; (map! :n "C-d"
+;;       (lambda () (interactive)
+;;         (my-smooth-scroll (/ (window-body-height) 2)))
+;;       :n "C-u"
+;;       (lambda () (interactive)
+;;         (my-smooth-scroll (- (/ (window-body-height) 2)))))
 
 (use-package! beacon
   :config
