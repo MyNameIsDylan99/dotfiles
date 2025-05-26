@@ -62,7 +62,6 @@
       :desc "Tomorrow" "m" #'org-roam-dailies-capture-tomorrow
       :desc "Find daily" "d" #'org-roam-dailies-goto-date)
 
-
 ;;Smooth scrolling
 ;;(pixel-scroll-precision-mode 1)
 ;; (defun my-smooth-scroll (lines)
@@ -165,7 +164,3 @@
      'face 'doom-dashboard-banner)))
 
 (setq +doom-dashboard-ascii-banner-fn #'my-doom-dashboard-cat-banner)
-
-;;(add-hook 'vterm-mode-hook
-;;          (lambda ()
-;;            (evil-emacs-state)))  ;; oder: (evil-insert-state) wenn du direkt tippen willst
