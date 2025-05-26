@@ -83,8 +83,7 @@
 (pixel-scroll-precision-mode 1)
 (use-package! beacon
   :config
-  (beacon-mode 1)
-  (beacon-blink-when-point-moves 1))
+  (beacon-mode 1))
 
 
 ;; Beispiel für Org Mode Heading Fonts
