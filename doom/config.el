@@ -15,7 +15,7 @@
 
 
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
-(setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 24))
+(setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 26))
 (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 30))
 (setq doom-big-font (font-spec :family "FantasqueSansM Nerd Font" :size 28)) ;; z.B. für Präsentationsmodus
 
