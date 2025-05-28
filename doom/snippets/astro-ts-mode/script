@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Script Tag
+# key: script
+# --
+<script${1: context="module"}>
+  ${0}
+</script>
