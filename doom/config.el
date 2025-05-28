@@ -174,11 +174,11 @@
   (add-to-list 'yas-snippet-dirs (expand-file-name "snippets/" doom-user-dir)))
 
 (defun my/vterm-dired-here ()
-  "Öffne Dired im aktuellen Verzeichnis des vterm-Buffers."
+  "Öffne dired im aktuellen Arbeitsverzeichnis des vterm-Buffers."
   (interactive)
   (if (derived-mode-p 'vterm-mode)
       (let ((dir (vterm--get-directory (current-buffer))))
         (if (and dir (stringp dir))
             (dired dir)
-          (message "Konnte Verzeichnis nicht bestimmen – shell-tracking aktiv?")))
-    (message "Nicht in einem vterm-Buffer")))
+          (message "Verzeichnis konnte nicht ermittelt werden. Shell-Tracking aktiv?")))
+    (message "Dies ist kein vterm-Buffer.")))
