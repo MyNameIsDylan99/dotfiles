@@ -171,3 +171,6 @@
      'face 'doom-dashboard-banner)))
 
 (setq +doom-dashboard-ascii-banner-fn #'my-doom-dashboard-cat-banner)
+
+(after! yasnippet
+  (add-to-list 'yas-snippet-dirs (expand-file-name "snippets/" doom-user-dir)))
