@@ -108,10 +108,8 @@
 (use-package! astro-ts-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.astro\\'" . astro-ts-mode))
-  (when (modulep! +lsp)
-    (add-hook 'astro-ts-mode-hook (lambda () (lsp!)) 'append))
-  ;;(add-hook 'astro-ts-mode-hook #'lsp 'append)
-  ;;(add-hook 'astro-ts-mode-hook #'lsp! 'append))
+
+  (add-hook 'astro-ts-mode-hook #'lsp! 'append)
 
   :config
   (let ((astro-recipe (make-treesit-auto-recipe
