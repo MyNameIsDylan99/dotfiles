@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Astro Layout Page
+# key: layout
+# --
+---
+import Layout from '${1:../layouts/BaseLayout.astro}';
+---
+
+<Layout>
+  ${0}
+</Layout>

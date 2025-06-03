@@ -1,0 +1,126 @@
+@define-color accent_color #20d0fc;
+
+* {
+  border: none;
+  border-radius: 8;
+  min-height: 0;
+  /* For the taskbar, I prefer simple Noto Sans.*/
+  font-family: Noto Sans;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+window#waybar {
+  background-image: linear-gradient(to bottom, #ffffff, #bbbbbb);
+  border-radius: 12px;
+  padding: 0px;
+}
+
+tooltip {
+  background-color: rgb(255,255,255);
+  color: rgb(135,135,135);
+  text-shadow: 0px 0px 4px rgb(135,135,135);
+}
+
+#custom-os_btn {
+  margin-left: 0.5cm;
+}
+
+#taskbar {
+  margin: 4px 8px;
+  margin-left: 0.25cm;
+}
+#taskbar button {
+  margin-left: 0.2cm;
+  margin-right: 0.2cm;
+  padding: 1px;
+  border-radius: 4px;
+}
+#taskbar button:hover {
+  background-color: rgba(0,0,0,0);
+  box-shadow: 0px 0px 5px rgb(135,135,135);
+}
+#taskbar button.active {
+  box-shadow: 0px 0px 5px rgb(135,135,135);
+}
+battery
+#battery,
+#network,
+#clock,
+#tray,
+#pulseaudio {
+background-image: linear-gradient(to bottom, #ffffff, #bbbbbb);
+box-shadow: 0px 0px 3px rgb(135,135,135);
+margin: 4px;
+padding: 4px 8px;
+border-radius: 8px;
+color: rgb(90,90,90);
+text-shadow: 0px 0px 4px rgb(135,135,135);
+}
+ 
+#tray menu {
+  background-color: rgba(255,255,255, 0.5);
+  color: rgb(90,90,90);
+  text-shadow: 0px 0px 4px rgb(135,135,135);
+  padding: 4px;
+}
+#tray menu menuitem {
+  background-image: linear-gradient(to bottom, #ffffff, #bbbbbb);
+  margin: 4px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(135,135,135, 0.45);
+  color: rgb(90,90,90);
+}
+#tray menu menuitem:hover {
+  color: @accent_color;
+  text-shadow: 0px 0px 6px @accent_color;
+  box-shadow: 0px 0px 6px rgba(135,135,135,1);
+}
+
+#workspaces {
+background-image: linear-gradient(to bottom, #ffffff, #bbbbbb);
+margin: 4px;
+padding: 4px 8px;
+border-radius: 8px;
+box-shadow: 0px 0px 3px rgb(135,135,135);
+}
+
+#workspaces button {
+transition-duration: 100ms;
+all: initial;
+min-width: 0;
+color: rgb(90,90,90);
+margin-right: 0.2cm;
+margin-left: 0.2cm;
+text-shadow: 0px 0px 4px rgb(135,135,135);
+}
+
+
+#workspaces button.active {
+  color: @accent_color;
+  text-shadow: 0px 0px 6px @accent_color;
+}
+
+#workspaces button:hover {
+  transition-duration: 120ms;
+  color:@accent_color;
+  text-shadow: 0px 0px 8px @accent_color;
+}
+
+#workspaces button.current_output {
+color: @accent_color;;
+}
+
+#workspaces button.urgent {
+color: #e78a4e;
+text-shadow: 0px 0px 6px #e78a4e;
+}
+
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+color: #cc1a1a;
+}
