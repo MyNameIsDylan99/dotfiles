@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Import Component
-# key: comp
-# --
----
-import ${1:Component} from '${2:./${1:Component}.astro}';
----
-
-<${1} />

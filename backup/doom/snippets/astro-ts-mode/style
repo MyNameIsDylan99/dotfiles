@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Style Scoped
-# key: style
-# --
-<style is:global>
-  ${0}
-</style>
