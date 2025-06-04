@@ -129,7 +129,14 @@
     :modes '(astro-ts-mode))
 
   (setf (alist-get 'astro-mode apheleia-mode-alist)
-        'prettier-astro))
+        'prettier-astro)
+  (setf (alist-get 'bash-ts-mode apheleia-mode-alist)
+        'shfmt)
+  (setf (alist-get 'shfmt apheleia-formatters)
+        '("shfmt"))
+  (setf (alist-get 'sh-mode apheleia-mode-alist)
+        'shfmt)
+  )
 
 (use-package! lsp-tailwindcss
   :when (modulep! +lsp)
