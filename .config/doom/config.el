@@ -189,3 +189,4 @@
             (dired dir)
           (message "Verzeichnis konnte nicht ermittelt werden. Shell-Tracking aktiv?")))
     (message "Dies ist kein vterm-Buffer.")))
+
