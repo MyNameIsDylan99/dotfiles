@@ -19,7 +19,7 @@ hold-time 200
   j-mod(tap-hold $tap-time $hold-time j rctl)
   k-mod(tap-hold $tap-time $hold-time k rsft)
   l-mod(tap-hold $tap-time $hold-time l lalt)
-  ;-mod(tap-hold $tap-time $hold-time ; rmet)
+  ;-mod(tap-hold $tap-time $hold-time ; lmet)
   )
 
 (deflayer base
