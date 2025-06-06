@@ -190,3 +190,19 @@
           (message "Verzeichnis konnte nicht ermittelt werden. Shell-Tracking aktiv?")))
     (message "Dies ist kein vterm-Buffer.")))
 
+(use-package! emms
+  :config
+  (require 'emms-setup)
+  (emms-all)
+  (emms-default-players))
+
+(defun dylan/emms-add-directory-with-default ()
+  "Frage nach einem Verzeichnis und schlage ~/pCloudDrive/Music vor."
+  (interactive)
+  (let ((dir (read-directory-name "Verzeichnis zur Playlist hinzufügen: " "~/pCloudDrive/Music")))
+    (emms-add-directory-tree dir)))
+
+(map! :leader
+      (:prefix ("e" . "emms")
+       :desc "EMMS starten" "e" #'emms
+       :desc "Verzeichnis auswählen (pCloud default)" "d" #'dylan/emms-add-directory-with-default))
