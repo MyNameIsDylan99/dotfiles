@@ -1,1 +1,1 @@
-/ml4w-minimal;/ml4w-minimal
+/ml4w-blur-bottom;/ml4w-blur-bottom/white
