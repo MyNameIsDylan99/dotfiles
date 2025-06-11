@@ -206,3 +206,7 @@
       (:prefix ("e" . "emms")
        :desc "EMMS starten" "e" #'emms
        :desc "Verzeichnis auswählen (pCloud default)" "d" #'dylan/emms-add-directory-with-default))
+
+(map! :leader
+      (:prefix ("n" . "navigation")
+       :desc "Remove highlights" "h" #'evil-ex-nohighlight))
