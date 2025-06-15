@@ -43,22 +43,16 @@
   :hook (csharp-ts-mode . lsp-deferred))
 
 (after! csharp-ts-mode
-  ;; Eigene Highlighting-Regeln ergänzen
   (setq-local treesit-font-lock-settings
               (append csharp-ts-mode--font-lock-settings
                       (treesit-font-lock-rules
                        :language 'c-sharp
-                       :feature 'user-function-call
+                       :feature 'function
                        '((invocation_expression
-                          expression: (identifier) @font-lock-function-call-face)
-                         (invocation_expression
                           expression: (member_access_expression
                                        name: (identifier) @font-lock-function-call-face))))))
-
-  ;; Font-lock neuladen
   (treesit-major-mode-setup)
   (font-lock-flush))
-
 
 (setq org-roam-directory "~/notes/")
 
