@@ -37,28 +37,30 @@
    lsp-enable-symbol-highlighting t
    lsp-signature-auto-activate t))
 
+(setq treesit-font-lock-level 4)
+
 (use-package! csharp-ts-mode
   :after lsp-mode
   :mode ("\.cs$")
   :hook (csharp-ts-mode . lsp-deferred))
 
-(after! csharp-ts-mode
-  (setq-local treesit-font-lock-settings
-              (append csharp-ts-mode--font-lock-settings
-                      (treesit-font-lock-rules
-                       :language 'c-sharp
-                       :feature 'function
-                       '((invocation_expression
-                          function: (member_access_expression
-                                     name: (identifier) @font-lock-function-call-face))))))
-  ;; Wichtig: das Feature muss auch aktiviert sein
-  (setq-local treesit-font-lock-feature-list
-              '((comment definition)
-                (keyword string type directives)
-                (constant escape-sequence expression literal property)
-                (function bracket delimiter error)))
-  (treesit-major-mode-setup)
-  (font-lock-flush))
+;; (after! csharp-ts-mode
+;;   (setq-local treesit-font-lock-settings
+;;               (append csharp-ts-mode--font-lock-settings
+;;                       (treesit-font-lock-rules
+;;                        :language 'c-sharp
+;;                        :feature 'function
+;;                        '((invocation_expression
+;;                           function: (member_access_expression
+;;                                      name: (identifier) @font-lock-function-call-face))))))
+;;   ;; Wichtig: das Feature muss auch aktiviert sein
+;;   (setq-local treesit-font-lock-feature-list
+;;               '((comment definition)
+;;                 (keyword string type directives)
+;;                 (constant escape-sequence expression literal property)
+;;                 (function bracket delimiter error)))
+;;   (treesit-major-mode-setup)
+;;   (font-lock-flush))
 
 (setq org-roam-directory "~/notes/")
 
