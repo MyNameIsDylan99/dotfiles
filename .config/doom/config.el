@@ -29,8 +29,8 @@
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
 ;; Aktiviere LSP automatisch für .cs-Dateien (C#)
-(after! csharp-mode
-  (add-hook 'csharp-mode-hook #'lsp-deferred))
+(after! csharp-ts-mode
+  (add-hook 'csharp-ts-mode-hook #'lsp-deferred))
 
 (after! lsp-mode
   (setq
