@@ -42,6 +42,20 @@
   :mode ("\.cs$")
   :hook (csharp-ts-mode . lsp-deferred))
 
+(after! c-sharp-ts-mode
+  (setq-local treesit-font-lock-settings
+              (append treesit-font-lock-settings
+                      (treesit-font-lock-rules
+                       :language 'c-sharp
+                       :feature 'function.call
+                       '((invocation_expression
+                          expression: (identifier) @font-lock-function-call-face)
+                         (invocation_expression
+                          expression: (member_access_expression
+                                       name: (identifier) @font-lock-function-call-face)))))))
+
+(add-hook 'c-sharp-ts-mode-hook #'treesit-major-mode-setup)
+
 (setq org-roam-directory "~/notes/")
 
 (use-package! org-roam
