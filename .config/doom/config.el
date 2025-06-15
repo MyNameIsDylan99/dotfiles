@@ -42,7 +42,6 @@
   :mode ("\.cs$")
   :hook (csharp-ts-mode . lsp-deferred))
 
-
 (setq org-roam-directory "~/notes/")
 
 (use-package! org-roam
