@@ -30,7 +30,10 @@
 
 ;; Aktiviere LSP automatisch für .cs-Dateien (C#)
 (after! csharp-ts-mode
-  (add-hook! 'csharp-ts-mode-hook #'lsp))
+  (add-hook 'csharp-ts-mode-local-vars-hook
+            (lambda ()
+              (message ">> lsp hook fired <<")
+              (lsp-deferred))))
 
 (after! lsp-mode
   (setq
