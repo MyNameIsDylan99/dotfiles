@@ -30,11 +30,11 @@
 
 ;; Aktiviere LSP automatisch für .cs-Dateien (C#)
 (after! csharp-ts-mode
-  (add-hook 'csharp-ts-mode-hook #'lsp-deferred))
+  (add-hook! 'csharp-ts-mode-hook #'lsp))
 
 (after! lsp-mode
   (setq
-   lsp-enable-snippet nil     ;; optional
+   ;;lsp-enable-snippet nil     ;; optional
    lsp-enable-symbol-highlighting t
    lsp-signature-auto-activate t))
 
