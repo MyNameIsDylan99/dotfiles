@@ -28,22 +28,20 @@
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
-;; Sag Emacs: verwende den Tree-sitter-Modus standardmäßig für C#
-(setq major-mode-remap-alist
-      '((csharp-mode . csharp-ts-mode)))
-
-;; Aktiviere LSP automatisch für .cs-Dateien (C#)
-(after! csharp-ts-mode
-  (add-hook 'csharp-ts-mode-hook
-            (lambda ()
-              (message ">> lsp hook fired <<")
-              (lsp-deferred))))
+(use-package! lsp-mode
+  :commands lsp lsp-deferred)
 
 (after! lsp-mode
   (setq
    ;;lsp-enable-snippet nil     ;; optional
    lsp-enable-symbol-highlighting t
    lsp-signature-auto-activate t))
+
+(use-package! csharp-ts-mode
+  :after lsp-mode
+  :mode ("\.cs$")
+  :hook (csharp-ts-mode . lsp-deferred))
+
 
 (setq org-roam-directory "~/notes/")
 
