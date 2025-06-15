@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dracula)
 
 (setq display-line-numbers-type t)
 (setq-default truncate-lines t) ; in allen Modi keine Zeilen umbrechen
