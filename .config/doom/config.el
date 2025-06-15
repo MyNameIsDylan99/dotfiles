@@ -49,8 +49,14 @@
                        :language 'c-sharp
                        :feature 'function
                        '((invocation_expression
-                          expression: (member_access_expression
-                                       name: (identifier) @font-lock-function-call-face))))))
+                          function: (member_access_expression
+                                     name: (identifier) @font-lock-function-call-face))))))
+  ;; Wichtig: das Feature muss auch aktiviert sein
+  (setq-local treesit-font-lock-feature-list
+              '((comment definition)
+                (keyword string type directives)
+                (constant escape-sequence expression literal property)
+                (function bracket delimiter error)))
   (treesit-major-mode-setup)
   (font-lock-flush))
 
