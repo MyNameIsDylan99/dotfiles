@@ -28,13 +28,15 @@
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
+;; Aktiviere LSP automatisch für .cs-Dateien (C#)
+(after! csharp-mode
+  (add-hook 'csharp-mode-hook #'lsp-deferred))
+
 (after! lsp-mode
   (setq
    lsp-enable-snippet nil     ;; optional
    lsp-enable-symbol-highlighting t
    lsp-signature-auto-activate t))
-
-(add-hook 'csharp-mode-hook #'lsp!)
 
 (setq org-roam-directory "~/notes/")
 
