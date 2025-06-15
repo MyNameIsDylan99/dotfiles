@@ -28,6 +28,10 @@
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state))
 
+;; Sag Emacs: verwende den Tree-sitter-Modus standardmäßig für C#
+(setq major-mode-remap-alist
+      '((csharp-mode . csharp-ts-mode)))
+
 ;; Aktiviere LSP automatisch für .cs-Dateien (C#)
 (after! csharp-ts-mode
   (add-hook 'csharp-ts-mode-hook
