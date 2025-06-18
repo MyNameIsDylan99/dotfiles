@@ -4,6 +4,7 @@
 
 (package! treesit-auto)
 (package! astro-ts-mode)
+(package! format-all)
 
 (when (modulep! +lsp)
   (package! lsp-tailwindcss
