@@ -162,9 +162,11 @@
         'shfmt)
 
   ;; Formatter mit csharpier definieren
-  (setf (alist-get 'csharpier apheleia-formatters)
-        '("clang-format" "--asume-filename=" filepath))
+  ;; (setf (alist-get 'csharpier apheleia-formatters)
+  ;;       '("clang-format" "--assume-filename=foo.cs"))
 
+  (setf (alist-get 'csharpier apheleia-formatters)
+        '("csharpier" "format" filepath "--write-stdout"))
   ;; C#-Mode dem Formatter zuordnen
   (setf (alist-get 'csharp-ts-mode apheleia-mode-alist)
         'csharpier)
