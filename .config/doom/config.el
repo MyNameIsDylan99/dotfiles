@@ -142,6 +142,9 @@
 
     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
 
+(add-to-list 'exec-path (expand-file-name "~/.dotnet/tools"))
+(setenv "PATH" (concat (expand-file-name "~/.dotnet/tools") ":" (getenv "PATH")))
+
 (after! apheleia
   (set-formatter! 'prettier-astro
     '("npx" "prettier" "--parser=astro"
