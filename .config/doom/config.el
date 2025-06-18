@@ -163,7 +163,7 @@
 
   ;; Formatter mit csharpier definieren
   (setf (alist-get 'csharpier apheleia-formatters)
-        '("csharpier" "format" filepath :in-place t))
+        '("clang-format" "--asume-filename=" filepath))
 
   ;; C#-Mode dem Formatter zuordnen
   (setf (alist-get 'csharp-ts-mode apheleia-mode-alist)
