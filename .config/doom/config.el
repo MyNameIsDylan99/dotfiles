@@ -157,6 +157,13 @@
         '("shfmt"))
   (setf (alist-get 'sh-mode apheleia-mode-alist)
         'shfmt)
+
+  (add-to-list 'apheleia-formatters
+               '(csharpier . ("csharpier" "--write-stdout" filepath)))
+
+  ;; csharpier für csharp-ts-mode zuweisen
+  (add-to-list 'apheleia-mode-alist
+               '(csharp-ts-mode . csharpier))
   )
 
 (use-package! lsp-tailwindcss
