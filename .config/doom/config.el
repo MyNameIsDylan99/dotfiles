@@ -158,12 +158,18 @@
   (setf (alist-get 'sh-mode apheleia-mode-alist)
         'shfmt)
 
-  (add-to-list 'apheleia-formatters
-               '(csharpier . ("csharpier" "--write-stdout" filepath)))
+  ;; Formatter mit csharpier definieren
+  (setf (alist-get 'csharpier apheleia-formatters)
+        '("csharpier" "--write-stdout"))
 
-  ;; csharpier für csharp-ts-mode zuweisen
-  (add-to-list 'apheleia-mode-alist
-               '(csharp-ts-mode . csharpier))
+  ;; C#-Mode dem Formatter zuordnen
+  (setf (alist-get 'csharp-ts-mode apheleia-mode-alist)
+        'csharpier)
+
+  ;; Optional: Apheleia global aktivieren
+  (apheleia-global-mode +1)
+  (setq apheleia-log-formatter-errors t)
+
   )
 
 (use-package! lsp-tailwindcss
