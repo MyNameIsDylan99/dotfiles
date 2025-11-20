@@ -5,6 +5,8 @@
 (package! treesit-auto)
 (package! astro-ts-mode)
 (package! format-all)
+(package! sudo-edit)
+(package! eradio)
 
 (when (modulep! +lsp)
   (package! lsp-tailwindcss

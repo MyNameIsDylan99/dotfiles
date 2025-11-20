@@ -1,23 +1,28 @@
 ;; -*- lexical-binding: t; -*-
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dark+)
 
 (setq display-line-numbers-type t)
 (setq-default truncate-lines t) ; in allen Modi keine Zeilen umbrechen
 
+
+(defun my/org-find-files(dirs)
+  "Sammelt alle .org Dateien in den angegebenen DIRS (rekursiv)."
+  (apply #'append
+         (mapcar (lambda (dir)
+                   (directory-files-recursively dir "\\.org$"))
+                 dirs)))
+
 (after! org
-  (setq org-directory "~/notes/")
   (setq org-agenda-files
-        '("~/notes/"
-          "~/notes/Life/GTD/Projects/"
-          "~/pCloudDrive/Portfolio/"
-          "~/notes/daily/"))
+        (my/org-find-files '("~/notes/"
+                             "~/pCloudDrive/Portfolio/"
+                             "~/Git/Bewerben/")))
   (setq org-log-done 'time))
 
-
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
-(setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 26))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 26))
 (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 30))
-(setq doom-big-font (font-spec :family "FantasqueSansM Nerd Font" :size 28)) ;; z.B. für Präsentationsmodus
+(setq doom-big-font (font-spec :family "FiraCode Nerd Font, Medium" :size 28)) ;; z.B. für Präsentationsmodus
 
 (after! doom-modeline
   (setq doom-modeline-height 45)) ;; Default ist 25
@@ -67,11 +72,17 @@
   :config
   (org-roam-db-autosync-enable))
 
-
+;; Standard-Template für Dailies
 (setq org-roam-dailies-capture-templates
-      '(("d" "default" entry "* %?" :target
-         (file+head "%<%Y-%m-%d>.org"
-                    "#+title: %<%Y-%m-%d>\n"))))
+      '(("d" "default" entry
+         "* %?"
+         :if-new (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n#+author: Dylan\n\n* Bewerben\n\n* WishOfHers\n\n* Emacs\n\n* Fiverr\n\n* Brainrot\n\n* Rollstuhlsimulator\n\n* Pause"))))
+
+;; (setq org-roam-dailies-capture-templates
+;;       '(("d" "default" entry "* %?" :target
+;;          (file+head "%<%Y-%m-%d>.org"
+;;                     "#+title: %<%Y-%m-%d>\n"))))
 (map! :leader
       :prefix ("n r" . "org-roam") ;; n = notes, r = roam
       :desc "Find node" "f" #'org-roam-node-find
@@ -171,6 +182,12 @@
   (setf (alist-get 'csharp-ts-mode apheleia-mode-alist)
         'csharpier)
 
+  (setf (alist-get 'clang-format apheleia-formatters)
+        '("clang-format" filepath))
+  ;; C++-Mode dem Formatter zuordnen
+  (setf (alist-get 'c++-ts-mode apheleia-mode-alist)
+        'clang-format)
+
   ;; Optional: Apheleia global aktivieren
   (apheleia-global-mode +1)
   (setq apheleia-log-formatter-errors t)
@@ -249,3 +266,30 @@
 (map! :leader
       (:prefix ("n" . "navigation")
        :desc "Remove highlights" "h" #'evil-ex-nohighlight))
+
+;;eradio
+(use-package! eradio
+  :init
+  (setq eradio-player '("mpv" "--no-video" "--no-terminal"))
+  :config
+  (setq eradio-channels '(("def con - soma fm" . "https://somafm.com/defcon256.pls")          ;; electronica with defcon-speaker bumpers
+                          ("cyberia - lainon"  . "https://lainon.life/radio/cyberia.ogg.m3u") ;; cyberpunk-esque electronica
+                          ("Synphaera"     . "https://somafm.com/synphaera256.pls")  ;; Electronic, ambient, minimal
+                          ("Music on Lush"     . "https://somafm.com/lush.pls")  ;; Pretty voice, mellow electronica-tinged music
+                          ("Deep Space One"     . "https://somafm.com/deepspaceone.pls")  ;; Deep ambient, electronic, experimental space music
+                          ("Radio 6"     . "http://as-hls-ww-live.akamaized.net/pool_81827798/live/ww/bbc_6music/bbc_6music.isml/bbc_6music-audio=96000.norewind.m3u8")  ;; Deep ambient, electronic, experimental space music
+                          ("Radio Energy Zürich"     . "https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3?ua=energy%2Bwebsite%2Bdesktop")  ;; Deep ambient, electronic, experimental space music
+                          ("SRF 3"     . "https://livestreaming-node-3.srg-ssr.ch/srgssr/srf3/aac/96")  ;; Deep ambient, electronic, experimental space music
+                          ("Vaporwaves"     . "https://somafm.com/vaporwaves.pls")))  ;; Waves of synthesizers, drum machines samplers and saxophones
+  )
+
+(map! :leader (:prefix ("r" . "eradio") :desc "Play a radio channel" "p" 'eradio-play))
+(map! :leader (:prefix ("r" . "eradio") :desc "Stop the radio player" "s" 'eradio-stop))
+(map! :leader (:prefix ("r" . "eradio") :desc "Toggle the radio player" "t" 'eradio-toggle))
+
+(after! which-key
+  (map! :leader
+        "<f2>" #'which-key-C-h-dispatch
+        "ö" #'which-key-show-next-page-cycle
+        "ä" #'which-key-show-previous-page-cycle)
+  )

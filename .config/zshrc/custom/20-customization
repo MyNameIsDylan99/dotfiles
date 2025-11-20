@@ -11,6 +11,8 @@ ZSH_THEME=robbyrussell
 # -----------------------------------------------------
 # oh-myzsh plugins
 # -----------------------------------------------------
+#
+    # fast-syntax-highlighting
 
 plugins=(
     git
@@ -19,7 +21,6 @@ plugins=(
     archlinux
     zsh-autosuggestions
     zsh-syntax-highlighting
-    fast-syntax-highlighting
     zsh-vi-mode
     copyfile
     copybuffer
@@ -43,12 +44,13 @@ setopt appendhistory
 # -----------------------------------------------------
 # Prompt
 # -----------------------------------------------------
-# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/EDM115-newline.omp.json)"
 
 # Shipped Theme
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/agnoster.omp.json)"
 
+#eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/lambdageneration.omp.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/dracula.omp.json)"
+#eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/dracula.omp.json)"
 # My config
 
 ## Completion using arrow keys (based on history)
