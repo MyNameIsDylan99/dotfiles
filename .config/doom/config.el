@@ -15,14 +15,14 @@
 (after! org
   (setq org-agenda-files
         (my/org-find-files '("~/notes/"
-                             "~/pCloudDrive/Portfolio/"
+                             ;; "~/pCloudDrive/Portfolio/"
                              "~/Git/Bewerben/")))
   (setq org-log-done 'time))
 
 ;; Schriftgrößen: skaliert Text sauber proportional zur UI
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 26))
-(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 30))
-(setq doom-big-font (font-spec :family "FiraCode Nerd Font, Medium" :size 28)) ;; z.B. für Präsentationsmodus
+;;(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 26))
+;;(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 30))
+;;(setq doom-big-font (font-spec :family "FiraCode Nerd Font, Medium" :size 28)) ;; z.B. für Präsentationsmodus
 
 (after! doom-modeline
   (setq doom-modeline-height 45)) ;; Default ist 25
